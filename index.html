@@ -3,12 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <title>Noah's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .photo-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.25rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #e2e8f0;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.25rem;
+            border-radius: 50%;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.35rem;
+        }
+
+        .school-year {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 1.75rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #f1f5f9;
+            margin-bottom: 1.75rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: opacity 0.15s, transform 0.1s;
+        }
+
+        .btn:hover {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+
+        .btn-linkedin {
+            background: #0a66c2;
+            color: #ffffff;
+        }
+
+        .btn-resume {
+            background: #f8fafc;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Hello, World!</h1>
-    <p>This is where your website content goes.</p>
+    <div class="card">
+        <div id="photo-area"></div>
+        <h1 id="name"></h1>
+        <p class="school-year" id="school-year"></p>
+        <hr class="divider">
+        <div class="links" id="links"></div>
+    </div>
+
+    <script>
+        // Edit stuff here when need to
+        const info = {
+            name: "Noah Fredrick Dixon",
+            initials: "NFD",
+            photoSrc: "FB_IMG_1788958958992.jpg",             
+            schoolYear: "Computer Engineering · Memorial University",
+            linkedin: "https://www.linkedin.com/in/noah-fredrick-dixon-60a656356",
+            resume: "resume.pdf"  
+        };
+        
+
+        // Photo or initials
+        const photoArea = document.getElementById("photo-area");
+        if (info.photoSrc) {
+            photoArea.innerHTML = `
+                <div class="photo-wrapper">
+                    <img src="${info.photoSrc}" alt="${info.name}">
+                </div>`;
+        } else {
+            photoArea.innerHTML = `<div class="photo-placeholder">${info.initials}</div>`;
+        }
+
+        // Name & school year
+        document.getElementById("name").textContent = info.name;
+        document.getElementById("school-year").textContent = info.schoolYear;
+
+        // Buttons
+        const linkedinIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z"/></svg>`;
+        const resumeIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>`;
+
+        document.getElementById("links").innerHTML = `
+            <a class="btn btn-linkedin" href="${info.linkedin}" target="_blank" rel="noopener">
+                ${linkedinIcon} LinkedIn
+            </a>
+            <a class="btn btn-resume" href="${info.resume}" target="_blank" rel="noopener">
+                ${resumeIcon} Resume
+            </a>`;
+    </script>
 
 </body>
 </html>
